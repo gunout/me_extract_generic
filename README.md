@@ -1,268 +1,354 @@
-# 🛡️ ME Extract Generic
+<!-- ============================================================ -->
+<!--  GUNOUT — ME EXTRACT GENERIC — NEON ROSE README              -->
+<!-- ============================================================ -->
 
-![GitHub last commit](https://img.shields.io/github/last-commit/gunout/me_extract_generic?style=for-the-badge&logo=github)
-![GitHub repo size](https://img.shields.io/github/repo-size/gunout/me_extract_generic?style=for-the-badge&logo=github)
-![GitHub stars](https://img.shields.io/github/stars/gunout/me_extract_generic?style=for-the-badge&logo=github)
-![GitHub forks](https://img.shields.io/github/forks/gunout/me_extract_generic?style=for-the-badge&logo=github)
-![GitHub issues](https://img.shields.io/github/issues/gunout/me_extract_generic?style=for-the-badge&logo=github)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Intel](https://img.shields.io/badge/Intel-0071C5?style=for-the-badge&logo=intel&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
-![Textual](https://img.shields.io/badge/Textual-000000?style=for-the-badge&logo=textual&logoColor=white)
+<h1 align="center">
+  <samp>🛡️ ME Extract Generic</samp>
+</h1>
 
-> **Extraction et exploration génériques de l'Intel Management Engine (ME) sur Linux.**
-> Script CLI + interface TUI interactive pour auditer, diagnostiquer et dumper les données exposées par l'IME, sur n'importe quelle machine Intel.
+<p align="center">
+  <samp>
+    <span style="color:#FF2D95;">Extraction & exploration génériques de l'Intel Management Engine sur Linux</span><br>
+    <span style="color:#FF69B4;">Script CLI + interface TUI interactive</span>
+  </samp>
+</p>
 
----
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=700&size=22&pause=800&color=FF2D95&background=0D001A00&center=true&vCenter=true&random=true&width=800&lines=%E2%96%B6+Initializing+IME+protocol...;%E2%96%B6+Reading+sysfs+registers...;%E2%96%B6+Decoding+HFSTS+status...;%E2%96%B6+Connecting+MKHI+client...;%E2%96%B6+System+online.+Welcome." alt="Typing SVG" />
+</p>
 
-## 📖 Table des matières
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-- [Présentation](#-présentation)
-- [Fonctionnalités](#-fonctionnalités)
-- [Prérequis](#-prérequis)
-- [Installation](#-installation)
-- [Utilisation](#-utilisation)
-- [Données extraites](#-données-extraites)
-- [Décodage des registres HFSTS](#-décodage-des-registres-hfsts)
-- [Limites connues](#-limites-connues)
-- [Avertissement](#️-avertissement)
-- [Contribution](#-contribution)
-- [Licence](#-licence)
+<p align="center">
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
+  <img src="https://img.shields.io/badge/Intel-0071C5?style=for-the-badge&logo=intel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white" />
+  <img src="https://img.shields.io/badge/Textual-000000?style=for-the-badge&logo=textual&logoColor=white" />
+</p>
 
----
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/gunout/me_extract_generic?style=for-the-badge&logo=github&color=FF2D95" />
+  <img src="https://img.shields.io/github/repo-size/gunout/me_extract_generic?style=for-the-badge&logo=github&color=FF69B4" />
+  <img src="https://img.shields.io/github/stars/gunout/me_extract_generic?style=for-the-badge&logo=github&color=FFB6D9" />
+  <img src="https://img.shields.io/github/forks/gunout/me_extract_generic?style=for-the-badge&logo=github&color=FF2D95" />
+  <img src="https://img.shields.io/github/issues/gunout/me_extract_generic?style=for-the-badge&logo=github&color=FF69B4" />
+</p>
 
-## 🔍 Présentation
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-**ME Extract Generic** est une boîte à outils open source conçue pour **extraire, décoder et archiver les informations de l'Intel Management Engine** (IME) sur les systèmes Linux.
+<h2 align="center">⚡ <code>about</code></h2>
 
-L'IME est un sous-système autonome embarqué dans les chipsets Intel depuis 2008, fonctionnant sur un MINIX modifié à un niveau de privilège extrême (Ring -3). Cet outil permet d'en **auditer l'état**, d'en **extraire les données lisibles** et de **documenter sa configuration** — sans recourir à des outils propriétaires.
+<p align="center">
+  <samp>
+    <span style="color:#FF2D95;">🛡️ IME Audit</span> — Extraction des données exposées par l'Intel Management Engine<br>
+    <span style="color:#FF69B4;">📊 HFSTS Decoding</span> — Décodage des registres de statut firmware<br>
+    <span style="color:#FFB6D9;">🔌 MKHI Protocol</span> — Communication via /dev/mei0 et GUID client<br>
+    <span style="color:#FF2D95;">🖥️ Textual TUI</span> — Interface terminal interactive et colorée<br>
+    <span style="color:#FF69B4;">📦 Export</span> — Dumps horodatés au format <code>.txt</code><br>
+    <span style="color:#FFB6D9;">🔭 Scope</span> — Forensique, éducatif, tests matériels
+  </samp>
+</p>
 
-Le dépôt contient deux composants complémentaires :
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-| Fichier | Description |
-| :--- | :--- |
-| `me_extract_generic.sh` | Script Bash **universel** pour toute machine Intel sous Linux |
-| `me_tui.py` | Interface **TUI interactive** (Textual) pour explorer le ME en temps réel |
+<h2 align="center">🛠️ <code>tech_stack</code></h2>
 
----
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/icons/PythonIcon.svg" width="60" height="60" alt="Python" title="Python"/>
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/icons/BackBoxIcon.svg" width="60" height="60" alt="Linux" title="Linux"/>
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/icons/DockerIcon.svg" width="60" height="60" alt="Bash" title="Bash"/>
+</p>
 
-## ✨ Fonctionnalités
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-### 🔧 Script CLI (`me_extract_generic.sh`)
+<h2 align="center">🚀 <code>features</code></h2>
 
-- ✅ **Détection automatique** du contrôleur MEI via `lspci`
-- ✅ **Lecture sysfs** : `dev_state`, `fw_ver`, `fw_status`, `hbm_ver`
-- ✅ **Décodage des registres HFSTS** (Working State, Operation Mode, Error Code…)
-- ✅ **Scan PCI** du contrôleur MEI (Vendor, Device, Class)
-- ✅ **Installation isolée de CHIPSEC** dans un venv temporaire
-- ✅ **Tentative de dump SPI** (si le firmware le permet)
-- ✅ **Sortie horodatée** dans un fichier `me_dump_<hostname>_<date>.txt`
+<h3 align="center">🔧 Script CLI — <code>me_extract_generic.sh</code></h3>
+<p align="center">
+  <samp>
+    ✅ Détection automatique du contrôleur MEI via <code>lspci</code><br>
+    ✅ Lecture sysfs : <code>dev_state</code>, <code>fw_ver</code>, <code>fw_status</code>, <code>hbm_ver</code><br>
+    ✅ Décodage des registres HFSTS<br>
+    ✅ Scan PCI du contrôleur MEI<br>
+    ✅ Installation isolée de CHIPSEC dans un venv temporaire<br>
+    ✅ Tentative de dump SPI (si firmware le permet)<br>
+    ✅ Sortie horodatée dans <code>me_dump_&lt;hostname&gt;_&lt;date&gt;.txt</code>
+  </samp>
+</p>
 
-### 🖥️ Interface TUI (`me_tui.py`)
+<h3 align="center">🖥️ Interface TUI — <code>me_tui.py</code></h3>
+<p align="center">
+  <samp>
+    ✅ Tableau de bord temps réel (état, version, debugfs)<br>
+    ✅ Connexion MKHI via <code>/dev/mei0</code> et GUID <code>8e6a6715-…</code><br>
+    ✅ Commandes GEN : <code>GET_FW_VERSION</code>, <code>GET_PLATFORM_TYPE</code>, <code>GET_FW_CAPS</code>, <code>GET_SKU</code><br>
+    ✅ Commandes FWUPDATE et CRASH<br>
+    ✅ Liste des clients ME via debugfs<br>
+    ✅ Export complet vers <code>me_dump_*.txt</code><br>
+    ✅ Log persistant dans <code>/tmp/me_tui.log</code><br>
+    ✅ Raccourcis clavier : <code>s</code>, <code>m</code>, <code>c</code>, <code>e</code>, <code>f</code>, <code>Ctrl+S</code>, <code>q</code>
+  </samp>
+</p>
 
-- ✅ **Tableau de bord** temps réel (état, version, debugfs)
-- ✅ **Connexion MKHI** via `/dev/mei0` et le GUID `8e6a6715-…`
-- ✅ **Commandes GEN** : `GET_FW_VERSION`, `GET_PLATFORM_TYPE`, `GET_FW_CAPS`, `GET_SKU`
-- ✅ **Commandes FWUPDATE et CRASH** (groupes `0x04` et `0x03`)
-- ✅ **Liste des clients ME** via debugfs
-- ✅ **Export complet** vers `me_dump_*.txt`
-- ✅ **Log persistant** dans `/tmp/me_tui.log`
-- ✅ **Raccourcis clavier** : `s`, `m`, `c`, `e`, `f`, `Ctrl+S`, `q`
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
----
+<h2 align="center">📋 <code>prerequisites</code></h2>
 
-## 📋 Prérequis
+<p align="center">
+  <samp>
+    <span style="color:#FF2D95;">Linux</span> — Noyau ≥ 4.18 (pour <code>/sys/class/mei/mei0/fw_ver</code>)<br>
+    <span style="color:#FF69B4;">Python</span> — 3.9+ (pour la TUI)<br>
+    <span style="color:#FFB6D9;">Textual</span> — 8.x (<code>pip install textual</code>)<br>
+    <span style="color:#FF2D95;">Module noyau</span> — <code>mei_me</code> (<code>sudo modprobe mei_me</code>)<br>
+    <span style="color:#FF69B4;">Droits</span> — <code>root</code> (accès à <code>/dev/mei0</code>)
+  </samp>
+</p>
 
-| Composant | Version minimale | Notes |
-| :--- | :--- | :--- |
-| **Linux** | Noyau ≥ 4.18 | Pour `/sys/class/mei/mei0/fw_ver` |
-| **Python** | 3.9+ | Pour la TUI |
-| **Textual** | 8.x | `pip install textual` |
-| **Module noyau** | `mei_me` | `sudo modprobe mei_me` |
-| **Droits** | `root` | Accès à `/dev/mei0` |
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-### Vérification rapide
+<h2 align="center">🚀 <code>installation</code></h2>
 
-    # Vérifier la présence du contrôleur MEI
-    lspci -nn | grep -i "communication controller"
-
-    # Vérifier que le module est chargé
-    lsmod | grep mei_me
-
-    # Vérifier l'accès au device
-    ls -l /dev/mei0
-
----
-
-## 🚀 Installation
-
-### 1. Cloner le dépôt
+<p align="center">
+  <samp>1. Cloner le dépôt</samp>
+</p>
 
     git clone https://github.com/gunout/me_extract_generic.git
     cd me_extract_generic
 
-### 2. Rendre les scripts exécutables
+<p align="center">
+  <samp>2. Rendre les scripts exécutables</samp>
+</p>
 
     chmod +x me_extract_generic.sh
 
-### 3. Créer un environnement virtuel pour la TUI
+<p align="center">
+  <samp>3. Créer un environnement virtuel pour la TUI</samp>
+</p>
 
     python3 -m venv venv
     source venv/bin/activate
     pip install textual
 
-### 4. (Optionnel) Monter debugfs
+<p align="center">
+  <samp>4. (Optionnel) Monter debugfs</samp>
+</p>
 
     sudo mount -t debugfs none /sys/kernel/debug
 
-> 💡 Sur Ubuntu, `debugfs` est généralement déjà monté. Vérifiez avec `mount | grep debugfs`.
+<p align="center">
+  <samp>💡 Sur Ubuntu, <code>debugfs</code> est généralement déjà monté. Vérifiez avec <code>mount | grep debugfs</code>.</samp>
+</p>
 
----
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-## 🎮 Utilisation
+<h2 align="center">🎮 <code>usage</code></h2>
 
-### 🔧 Script CLI : `me_extract_generic.sh`
+<h3 align="center">🔧 Script CLI</h3>
 
     sudo ./me_extract_generic.sh
 
-**Sortie** : un fichier `me_dump_<hostname>_<date>.txt` contenant :
+<p align="center">
+  <samp>Sortie : un fichier <code>me_dump_&lt;hostname&gt;_&lt;date&gt;.txt</code> contenant :</samp>
+</p>
 
-- Détection du contrôleur MEI
-- Données sysfs décodées
-- Informations PCI
-- Tentative de dump SPI via CHIPSEC (si installable)
-- Informations complémentaires
+<p align="center">
+  <samp>
+    • Détection du contrôleur MEI<br>
+    • Données sysfs décodées<br>
+    • Informations PCI<br>
+    • Tentative de dump SPI via CHIPSEC<br>
+    • Informations complémentaires
+  </samp>
+</p>
 
-### 🖥️ Interface TUI : `me_tui.py`
+<h3 align="center">🖥️ Interface TUI</h3>
 
     sudo ./venv/bin/python me_tui.py
 
-**Raccourcis clavier** :
+<p align="center">
+  <samp>Raccourcis clavier :</samp>
+</p>
 
-| Touche | Action |
-| :---: | :--- |
-| `s` | Version firmware (sysfs) |
-| `m` | Connexion et commandes MKHI |
-| `c` | Liste des clients ME (debugfs) |
-| `f` | Exploration FWUPDATE et CRASH |
-| `e` | **Extraction complète vers `me_dump_*.txt`** |
-| `Ctrl+S` | Sauvegarde du log dans `/tmp/me_tui.log` |
-| `q` | Quitter |
+<p align="center">
+  <samp>
+    <code>s</code> — Version firmware (sysfs)<br>
+    <code>m</code> — Connexion et commandes MKHI<br>
+    <code>c</code> — Liste des clients ME (debugfs)<br>
+    <code>f</code> — Exploration FWUPDATE et CRASH<br>
+    <code>e</code> — Extraction complète vers <code>me_dump_*.txt</code><br>
+    <code>Ctrl+S</code> — Sauvegarde du log dans <code>/tmp/me_tui.log</code><br>
+    <code>q</code> — Quitter
+  </samp>
+</p>
 
-**Navigation** : `Tab` pour passer d'un bouton à l'autre, `Entrée` pour activer. La souris est également supportée.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
----
+<h2 align="center">📊 <code>extracted_data</code></h2>
 
-## 📊 Données extraites
+<p align="center">
+  <samp>
+    <span style="color:#FF2D95;">sysfs</span> — Version firmware, état, HFSTS, HBM<br>
+    <span style="color:#FF69B4;">PCI</span> — Vendor / Device / Class du contrôleur MEI<br>
+    <span style="color:#FFB6D9;">MKHI</span> — Version, plateforme, capacités, SKU, FWUPDATE, CRASH
+  </samp>
+</p>
 
-| Source | Donnée | Chemin / Méthode |
-| :--- | :--- | :--- |
-| **sysfs** | Version firmware | `/sys/class/mei/mei0/fw_ver` |
-| **sysfs** | État du device | `/sys/class/mei/mei0/dev_state` |
-| **sysfs** | Registres HFSTS | `/sys/class/mei/mei0/fw_status` |
-| **sysfs** | Version HBM (firmware) | `/sys/class/mei/mei0/hbm_ver` |
-| **sysfs** | Version HBM (driver) | `/sys/class/mei/mei0/hbm_ver_drv` |
-| **PCI** | Vendor/Device/Class | `/sys/bus/pci/devices/*/` |
-| **MKHI** | Version firmware | Groupe `0xFF`, cmd `0x02` |
-| **MKHI** | Type de plateforme | Groupe `0xFF`, cmd `0x03` |
-| **MKHI** | Capacités firmware | Groupe `0xFF`, cmd `0x04` |
-| **MKHI** | SKU commercial | Groupe `0xFF`, cmd `0x08` |
-| **MKHI** | Version FWUPDATE | Groupe `0x04`, cmd `0x01` |
-| **MKHI** | Info crash dump | Groupe `0x03`, cmd `0x01` |
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
----
+<h2 align="center">🧩 <code>hfsts_decoding</code></h2>
 
-## 🧩 Décodage des registres HFSTS
+<p align="center">
+  <samp>
+    <span style="color:#FF2D95;">HFSTS1</span> — Working State, Operation State, Operation Mode, Error Code, Update In Progress<br>
+    <span style="color:#FF69B4;">HFSTS2</span> — Progress Code, PM Event<br>
+    <span style="color:#FFB6D9;">HFSTS3-6</span> — Recovery mode, update disabled, crash dump, operation mode
+  </samp>
+</p>
 
-Pour les plateformes **ME 11 / Skylake**, les registres `fw_status` sont décodés comme suit :
+<p align="center">
+  <samp>💡 Les définitions exactes varient selon la génération du ME. Le décodeur cible ME 11 (Skylake/Kaby Lake) et s'appuie sur coreboot.</samp>
+</p>
 
-### HFSTS1 (`0x90000245` → exemple)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-| Champ | Bits | Valeur | Signification |
-| :--- | :---: | :---: | :--- |
-| **Working State** | 3:0 | `5` | Normal |
-| **Operation State** | 8:6 | `1` | M0 with UMA |
-| **Operation Mode** | 19:16 | `0` | Normal |
-| **Error Code** | 15:12 | `0` | No Error |
-| **Update In Progress** | 11 | `1` | YES |
+<h2 align="center">⚠️ <code>known_limitations</code></h2>
 
-### HFSTS2 (`0x82210506` → exemple)
+<p align="center">
+  <samp>
+    ❌ Commandes avancées sur plateformes consumer (non-vPro)<br>
+    ❌ Contenu du firmware ME (code MINIX, modules internes)<br>
+    ❌ Mémoire interne du ME<br>
+    ❌ Dump SPI complet si Secure Boot ou protections firmware le bloquent
+  </samp>
+</p>
 
-| Champ | Bits | Valeur | Signification |
-| :--- | :---: | :---: | :--- |
-| **Progress Code** | 31:28 | `8` | UMA/kernel interne |
-| **PM Event** | 27:24 | `2` | — |
+<p align="center">
+  <samp>💡 Pour un dump SPI complet, utilisez <code>flashrom</code> ou <code>CHIPSEC</code>, puis analysez avec <code>ME Analyzer</code>.</samp>
+</p>
 
-> 💡 Les définitions exactes varient selon la génération du ME. Le décodeur implémenté cible ME 11 (Skylake/Kaby Lake) et s'appuie sur les définitions de coreboot.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
----
+<h2 align="center">⚠️ <code>warning</code></h2>
 
-## ⚠️ Limites connues
+<p align="center">
+  <samp>
+    <span style="color:#FF2D95;">Cet outil est destiné à un usage forensique, éducatif ou de test.</span><br>
+    • L'accès à <code>/dev/mei0</code> nécessite les privilèges <code>root</code>.<br>
+    • CHIPSEC charge un module noyau et peut provoquer des instabilités système.<br>
+    • Ne l'utilisez pas sur une machine de production.<br>
+    • L'auteur décline toute responsabilité en cas de dommage matériel ou logiciel.
+  </samp>
+</p>
 
-Cet outil ne peut **pas** extraire ce que le firmware ME refuse d'exposer :
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-- ❌ **Commandes avancées** (`GET_FW_CAPS`, `GET_SKU`, `FWCAPS`) sur les plateformes **consumer** (non-vPro)
-- ❌ **Contenu du firmware ME** (code MINIX, modules internes)
-- ❌ **Mémoire interne** du ME
-- ❌ **Dump SPI complet** si Secure Boot ou les protections firmware le bloquent
+<h2 align="center">🤝 <code>contribution</code></h2>
 
-> 💡 Pour un dump SPI complet, utilisez `flashrom` ou `CHIPSEC` (inclus dans le script CLI), puis analysez le fichier avec `ME Analyzer`.
+<p align="center">
+  <samp>Les contributions sont les bienvenues !</samp>
+</p>
 
----
+<p align="center">
+  <samp>
+    1. <b>Fork</b> le dépôt<br>
+    2. Créez une branche (<code>git checkout -b feature/ma-fonctionnalite</code>)<br>
+    3. <b>Commit</b> vos changements (<code>git commit -m 'Ajout de ma fonctionnalité'</code>)<br>
+    4. <b>Push</b> (<code>git push origin feature/ma-fonctionnalite</code>)<br>
+    5. Ouvrez une <b>Pull Request</b>
+  </samp>
+</p>
 
-## ⚠️ Avertissement
+<h3 align="center">💡 Idées d'amélioration</h3>
 
-> **Cet outil est destiné à un usage forensique, éducatif ou de test.**
->
-> - L'accès à `/dev/mei0` nécessite les privilèges **root**.
-> - CHIPSEC charge un module noyau et peut provoquer des **instabilités système**.
-> - Ne l'utilisez **pas** sur une machine de production.
-> - L'auteur décline toute responsabilité en cas de dommage matériel ou logiciel.
+<p align="center">
+  <samp>
+    🌐 Support d'autres générations ME (ME 12, 13, 14…)<br>
+    📦 Export JSON structuré<br>
+    🧪 Tests automatisés sur différentes plateformes<br>
+    📚 Documentation des codes d'erreur MKHI<br>
+    🖥️ Support Windows (via driver MEI)
+  </samp>
+</p>
 
----
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-## 🤝 Contribution
+<h2 align="center">📄 <code>license</code></h2>
 
-Les contributions sont les bienvenues !
+<p align="center">
+  <samp>Distribué sous licence <b>MIT</b>. Voir <code>LICENSE</code> pour plus d'informations.</samp>
+</p>
 
-1. **Fork** le dépôt
-2. Créez une branche (`git checkout -b feature/ma-fonctionnalite`)
-3. **Commit** vos changements (`git commit -m 'Ajout de ma fonctionnalité'`)
-4. **Push** (`git push origin feature/ma-fonctionnalite`)
-5. Ouvrez une **Pull Request**
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
-### Idées d'amélioration
+<h2 align="center">🙏 <code>credits</code></h2>
 
-- 🌐 Support d'autres générations ME (ME 12, 13, 14…)
-- 📦 Export JSON structuré
-- 🧪 Tests automatisés sur différentes plateformes
-- 📚 Documentation des codes d'erreur MKHI
-- 🖥️ Support Windows (via `MEI` driver)
+<p align="center">
+  <samp>
+    <a href="https://www.coreboot.org/">coreboot</a> — Définitions des registres HFSTS<br>
+    <a href="https://github.com/chipsec/chipsec">CHIPSEC</a> — Dump SPI bas niveau<br>
+    <a href="https://github.com/platomav/MEAnalyzer">ME Analyzer</a> — Analyse de firmware<br>
+    <a href="https://textual.textualize.io/">Textual</a> — Framework TUI<br>
+    <a href="https://github.com/Jatinkapilaq1/intel-me-research">Intel ME Research</a> — Inspiration
+  </samp>
+</p>
 
----
-
-## 📄 Licence
-
-Distribué sous licence **MIT**. Voir `LICENSE` pour plus d'informations.
-
----
-
-## 🙏 Remerciements
-
-- [coreboot](https://www.coreboot.org/) — Définitions des registres HFSTS
-- [CHIPSEC](https://github.com/chipsec/chipsec) — Dump SPI bas niveau
-- [ME Analyzer](https://github.com/platomav/MEAnalyzer) — Analyse de firmware
-- [Textual](https://textual.textualize.io/) — Framework TUI
-- [Intel ME Research](https://github.com/Jatinkapilaq1/intel-me-research) — Inspiration
-
----
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
 
 <div align="center">
+  <h3>💖 Support my work</h3>
 
-**⭐ Si ce projet vous est utile, n'hésitez pas à lui donner une étoile ! ⭐**
+  <a href="https://ko-fi.com/gunout">
+    <img height='50' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' alt='Support me on Ko-fi' />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.buymeacoffee.com/gunout">
+    <img height='50' src='https://cdn.buymeacoffee.com/buttons/v2/default-blue.png' alt='Buy Me A Coffee' />
+  </a>
 
-[![GitHub stars](https://img.shields.io/github/stars/gunout/me_extract_generic?style=social)](https://github.com/gunout/me_extract_generic)
+  <br/><br/>
 
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/footer_neon.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/footer_neon.svg">
+    <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/footer_neon.svg" alt="Footer" width="100%" />
+  </picture>
 </div>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
+</p>
