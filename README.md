@@ -21,6 +21,11 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=700&size=22&pause=800&color=FF2D95&background=0D001A00&center=true&vCenter=true&random=true&width=800&lines=%E2%96%B6+Initializing+IME+protocol...;%E2%96%B6+Reading+sysfs+registers...;%E2%96%B6+Decoding+HFSTS+status...;%E2%96%B6+Connecting+MKHI+client...;%E2%96%B6+System+online.+Welcome." alt="Typing SVG" />
 </p>
 
+<!-- 👇 INSERTION DU SCREENSHOT 👇 -->
+<p align="center">
+  <img src="https://raw.githubusercontent.com/gunout/me_extract_generic/main/assets/images/preview.svg" alt="ME Explorer TUI Preview" width="800" />
+</p>
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/gunout/gunout/main/assets/images/divider_neon.svg" alt="Divider" />
 </p>
